@@ -1,0 +1,490 @@
+---
+import ImageModal from '../components/ImageModal.astro';
+
+const projects = [
+  {
+    title: 'Smart Parking System',
+    category: 'IoT · Embedded Systems',
+    shortDescription: 'Real-time parking occupancy detection using a mesh of IoT sensors. Live dashboard, space reservation API, and a mobile-friendly status view — all built on low-power embedded hardware.',
+    deepDive: {
+      overview: 'A campus-wide smart parking solution that uses ESP32 microcontrollers with ultrasonic sensors to detect vehicle presence in real time. Each sensor node publishes occupancy data via MQTT to a central Node.js broker. A React dashboard visualizes lot utilization, and a REST API enables space reservation. The system handles 200+ parking spots across 4 lots with sub-second latency.',
+      architecture: 'ESP32 sensor mesh → MQTT broker (Mosquitto) → Node.js ingestion service → PostgreSQL → React dashboard. The sensor firmware is written in C++ using the Arduino framework with deep-sleep power management for battery-operated nodes.',
+      keyPoints: [
+        'Sub-second occupancy detection with ultrasonic HC-SR04 sensors',
+        'MQTT pub/sub for low-bandwidth, real-time sensor telemetry',
+        'React dashboard with heat-map visualization of lot utilization',
+        'REST API for space reservation with conflict detection',
+        'Battery-optimized firmware with ESP32 deep-sleep cycles'
+      ]
+    },
+    techStack: [
+      { name: 'ESP32', url: 'https://www.espressif.com/en/products/socs/esp32' },
+      { name: 'MQTT', url: 'https://mqtt.org/' },
+      { name: 'Node.js', url: 'https://nodejs.org/' },
+      { name: 'React', url: 'https://react.dev/' },
+      { name: 'PostgreSQL', url: 'https://www.postgresql.org/' },
+      { name: 'Arduino', url: 'https://www.arduino.cc/' },
+    ],
+    images: [
+      { src: 'https://placehold.co/800x480/12181A/E2FF52?text=Parking+Dashboard', alt: 'Smart Parking — real-time dashboard showing lot occupancy heat-map' },
+      { src: 'https://placehold.co/800x480/12181A/9EB0A2?text=Sensor+Mesh+Diagram', alt: 'Smart Parking — ESP32 sensor mesh architecture diagram' },
+      { src: 'https://placehold.co/800x480/12181A/FF6B4A?text=Mobile+Status+View', alt: 'Smart Parking — mobile-friendly status and reservation view' },
+    ],
+    github: '#',
+    demo: '#',
+  },
+  {
+    title: 'Drone Fire Detector',
+    category: 'Computer Vision · Autonomous Systems',
+    shortDescription: 'Autonomous drone system that detects wildfire signatures using onboard computer vision. Real-time YOLO inference, automated flight-path adjustment, and ground-station alerting pipeline.',
+    deepDive: {
+      overview: 'An autonomous quadcopter system designed for early wildfire detection. The drone runs a YOLOv8 model on a Jetson Nano for real-time smoke and flame classification. When a fire signature is detected, the drone auto-adjusts its flight path to circle the area and sends GPS coordinates + images to a ground-station dashboard via 4G. Built and tested in simulation (Gazebo + ROS) and deployed on a custom F450 frame.',
+      architecture: 'Jetson Nano (onboard inference) → ROS2 flight controller → Pixhawk FC → 4G telemetry → Ground Station (Python/Flask). The CV pipeline processes 15 FPS at 640x480 resolution with <200ms inference latency.',
+      keyPoints: [
+        'YOLOv8-nano model fine-tuned on custom wildfire smoke/flame dataset',
+        'Real-time inference at 15 FPS on Jetson Nano with TensorRT optimization',
+        'Autonomous flight-path adjustment: detection → orbit → report',
+        'ROS2 + Gazebo simulation environment for safe testing',
+        'Ground station with live video feed, GPS map overlay, and alert dispatch'
+      ]
+    },
+    techStack: [
+      { name: 'Python', url: 'https://www.python.org/' },
+      { name: 'OpenCV', url: 'https://opencv.org/' },
+      { name: 'YOLOv8', url: 'https://docs.ultralytics.com/' },
+      { name: 'ROS2', url: 'https://docs.ros.org/en/humble/' },
+      { name: 'Jetson Nano', url: 'https://developer.nvidia.com/embedded/jetson-nano' },
+      { name: 'Flask', url: 'https://flask.palletsprojects.com/' },
+    ],
+    images: [
+      { src: 'https://placehold.co/800x480/12181A/FF6B4A?text=Drone+Flight+Path', alt: 'Drone Fire Detector — autonomous flight path with detection zones' },
+      { src: 'https://placehold.co/800x480/12181A/E2FF52?text=CV+Detection+Output', alt: 'Drone Fire Detector — YOLO detection output with bounding boxes' },
+      { src: 'https://placehold.co/800x480/12181A/4FACFE?text=Ground+Station+Dashboard', alt: 'Drone Fire Detector — ground station live monitoring dashboard' },
+    ],
+    github: '#',
+    demo: '#',
+  },
+  {
+    title: 'Hexapod Robot',
+    category: 'Robotics · Motion Control',
+    shortDescription: 'Six-legged robot with inverse-kinematics gait engine, autonomous obstacle avoidance, and a manual override mode via gamepad. All servo control logic written from scratch.',
+    deepDive: {
+      overview: 'A 6-DOF hexapod robot built from 18 servo motors controlled by an Arduino Mega with a custom inverse-kinematics library. The robot supports three locomotion modes: tripod gait for speed, ripple gait for stability, and wave gait for rough terrain. An ultrasonic sensor array provides obstacle detection for autonomous navigation, while a PS4 controller enables manual teleoperation. The IK solver computes joint angles at ~500Hz for smooth motion.',
+      architecture: 'PS4 Controller (Bluetooth) → Arduino Mega → PCA9685 servo driver → 18× MG996R servos. The kinematics engine runs a custom C++ library implementing forward and inverse kinematics for a 3-DOF per leg configuration.',
+      keyPoints: [
+        'Custom C++ inverse-kinematics library for 3-DOF hexapod leg geometry',
+        'Three gait modes: tripod (fast), ripple (stable), wave (rough terrain)',
+        '18 servo motors controlled via PCA9685 PWM driver at 50Hz update rate',
+        'Ultrasonic sensor array (HC-SR04 × 5) for autonomous obstacle avoidance',
+        'PS4 Bluetooth controller for manual teleoperation mode'
+      ]
+    },
+    techStack: [
+      { name: 'C++', url: 'https://isocpp.org/' },
+      { name: 'Arduino', url: 'https://www.arduino.cc/' },
+      { name: 'Python', url: 'https://www.python.org/' },
+      { name: 'ROS2', url: 'https://docs.ros.org/en/humble/' },
+      { name: 'PID Control', url: 'https://en.wikipedia.org/wiki/PID_controller' },
+      { name: 'Bluetooth', url: 'https://www.bluetooth.com/' },
+    ],
+    images: [
+      { src: 'https://placehold.co/800x480/12181A/9EB0A2?text=Hexapod+Full+Assembly', alt: 'Hexapod Robot — full assembly with 18 servo motors' },
+      { src: 'https://placehold.co/800x480/12181A/C9C0D8?text=Kinematics+Diagram', alt: 'Hexapod Robot — inverse kinematics leg geometry diagram' },
+      { src: 'https://placehold.co/800x480/12181A/E2FF52?text=Gait+Pattern+Visualization', alt: 'Hexapod Robot — gait pattern visualization for all three modes' },
+    ],
+    github: '#',
+    demo: '#',
+  },
+  {
+    title: 'Obsidian Second Brain',
+    category: 'PKM · Knowledge Engineering',
+    shortDescription: 'Curated knowledge-management system built on Obsidian with custom plugins, templated workflows, and a Zettelkasten-inspired note graph optimized for engineering research.',
+    deepDive: {
+      overview: 'A comprehensive personal knowledge management (PKM) system designed for engineering research and rapid recall. Built on Obsidian with 2,000+ interconnected notes, custom Dataview queries, and automated Templater workflows. The system uses a modified Zettelkasten methodology with MOC (Map of Content) hubs for each domain: robotics, ML, embedded systems, and software architecture. Custom CSS snippets create a terminal-inspired aesthetic with syntax highlighting for code-heavy notes.',
+      architecture: 'Obsidian vault → Core plugins (Templates, Graph View, Quick Switcher) → Community plugins (Dataview, Templater, Calendar, Excalidraw) → Custom CSS snippets → Git-backed sync. The vault structure follows PARA-inspired hierarchy: Projects, Areas, Resources, Archives.',
+      keyPoints: [
+        '2,000+ interconnected notes with bi-directional linking',
+        'Dataview queries for dynamic dashboards: active projects, recent learnings, reading lists',
+        'Templater automation for daily notes, project briefs, and literature reviews',
+        'MOC (Map of Content) hub pages for each engineering domain',
+        'Custom CSS snippets for terminal-inspired code blocks and mono-font aesthetics'
+      ]
+    },
+    techStack: [
+      { name: 'Obsidian', url: 'https://obsidian.md/' },
+      { name: 'Markdown', url: 'https://www.markdownguide.org/' },
+      { name: 'Dataview', url: 'https://blacksmithgu.github.io/obsidian-dataview/' },
+      { name: 'Templater', url: 'https://silentvoid13.github.io/Templater/' },
+      { name: 'Git', url: 'https://git-scm.com/' },
+      { name: 'CSS', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
+    ],
+    images: [
+      { src: 'https://placehold.co/800x480/12181A/C9C0D8?text=Note+Graph+View', alt: 'Obsidian Second Brain — graph view showing 2,000+ interconnected notes' },
+      { src: 'https://placehold.co/800x480/12181A/E2FF52?text=Dashboard+Dashboard', alt: 'Obsidian Second Brain — dynamic Dataview dashboard with active projects' },
+      { src: 'https://placehold.co/800x480/12181A/9EB0A2?text=Code+Snippet+Preview', alt: 'Obsidian Second Brain — terminal-inspired code snippet with custom CSS' },
+    ],
+    github: '#',
+    demo: '#',
+  },
+  {
+    title: 'Predictive ML Pipeline',
+    category: 'Machine Learning · Data',
+    shortDescription: 'End-to-end time-series forecasting pipeline trained on real sensor telemetry. Feature engineering, model selection, hyperparameter tuning, and a Streamlit dashboard for interactive what-if predictions.',
+    deepDive: {
+      overview: 'A production-oriented ML pipeline for time-series forecasting trained on real-world sensor data from industrial IoT deployments. The pipeline ingests raw sensor readings (temperature, vibration, pressure), performs automated feature engineering (lag features, rolling statistics, Fourier transforms), and trains multiple models (XGBoost, LightGBM, LSTM) with Optuna hyperparameter optimization. A Streamlit dashboard enables stakeholders to adjust input parameters and visualize predictions interactively.',
+      architecture: 'Sensor CSV/Parquet ingestion → Pandas preprocessing → Feature engineering (tsfresh + custom) → Optuna hyperparameter search → Ensemble (XGBoost + LightGBM) → MLflow tracking → Streamlit dashboard. The pipeline is containerized with Docker for reproducible runs.',
+      keyPoints: [
+        'Time-series forecasting on real industrial sensor telemetry (temp, vibration, pressure)',
+        'Automated feature engineering with lag features, rolling windows, and FFT components',
+        'Multi-model ensemble: XGBoost + LightGBM with Optuna hyperparameter optimization',
+        'Streamlit dashboard for interactive prediction and what-if scenario modeling',
+        'MLflow experiment tracking and model registry for reproducible training runs'
+      ]
+    },
+    techStack: [
+      { name: 'Python', url: 'https://www.python.org/' },
+      { name: 'scikit-learn', url: 'https://scikit-learn.org/' },
+      { name: 'XGBoost', url: 'https://xgboost.readthedocs.io/' },
+      { name: 'Pandas', url: 'https://pandas.pydata.org/' },
+      { name: 'Streamlit', url: 'https://streamlit.io/' },
+      { name: 'Docker', url: 'https://www.docker.com/' },
+    ],
+    images: [
+      { src: 'https://placehold.co/800x480/12181A/E2FF52?text=Forecast+Dashboard', alt: 'Predictive ML Pipeline — Streamlit forecast dashboard with interactive controls' },
+      { src: 'https://placehold.co/800x480/12181A/4FACFE?text=Feature+Importance', alt: 'Predictive ML Pipeline — SHAP feature importance analysis' },
+      { src: 'https://placehold.co/800x480/12181A/FF6B4A?text=Training+Metrics', alt: 'Predictive ML Pipeline — MLflow training metrics and model comparison' },
+    ],
+    github: '#',
+    demo: '#',
+  },
+];
+---
+
+<section id="projects" class="section bg-[var(--color-surface)]">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section header -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+      <div class="animate-on-scroll relative inline-block">
+        <h2 class="section-title">
+          What I&rsquo;ve Shipped
+        </h2>
+        <svg class="doodle-underline" viewBox="0 0 220 12" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M4,7 Q30,2 55,6 T110,3 T165,7 T216,4" />
+        </svg>
+      </div>
+
+      <!-- Carousel controls -->
+      <div class="flex items-center gap-3 animate-on-scroll">
+        <button
+          id="carousel-prev"
+          class="brutal-btn px-3 py-2 text-base interactive"
+          aria-label="Previous project"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button
+          id="carousel-next"
+          class="brutal-btn px-3 py-2 text-base interactive"
+          aria-label="Next project"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <span class="font-mono text-xs text-[var(--color-muted)] ml-2 min-w-[3rem]" id="carousel-counter">
+          1 / {projects.length - 2}
+        </span>
+      </div>
+    </div>
+
+    <!-- Subtitle -->
+    <p class="animate-on-scroll font-display text-lg text-[var(--color-muted)] mb-8 max-w-xl">
+      Field-tested projects from the lab. Click through to explore each one.
+    </p>
+
+    <!-- Carousel wrapper — hides overflow for sliding effect -->
+    <div class="overflow-hidden" id="carousel-wrapper">
+      <div class="carousel-track" id="carousel-track">
+        {projects.map((project, i) => (
+          <div class="carousel-card" data-carousel-index={i}>
+            <article class="brutal-card group relative overflow-hidden h-full flex flex-col">
+              {/* ---- Image Gallery ---- */}
+              <div class="relative overflow-hidden aspect-video bg-[var(--color-ink)]">
+                <img
+                  src={project.images[0].src}
+                  alt={project.images[0].alt}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+                  loading={i > 2 ? 'lazy' : 'eager'}
+                  data-lightbox-img={project.images[0].src}
+                  data-lightbox-alt={project.images[0].alt}
+                  data-lightbox-gallery={`project-${i}`}
+                />
+                <div class="absolute inset-0 scanlines opacity-30" aria-hidden="true"></div>
+              </div>
+
+              {/* Thumbnail row */}
+              <div class="flex gap-1.5 px-3 pt-3">
+                {project.images.map((img, imgIdx) => (
+                  <button
+                    class="flex-1 aspect-video overflow-hidden border-2 border-[var(--color-border)] cursor-pointer interactive hover:border-[var(--color-coral)] dark:hover:border-[var(--color-cyan)] transition-colors"
+                    data-lightbox-img={img.src}
+                    data-lightbox-alt={img.alt}
+                    data-lightbox-gallery={`project-${i}`}
+                    aria-label={`View ${project.title} image ${imgIdx + 1}`}
+                  >
+                    <img
+                      src={img.src}
+                      alt=""
+                      class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </button>
+                ))}
+              </div>
+
+              {/* ---- Content ---- */}
+              <div class="p-5 flex flex-col flex-1">
+                {/* Category label */}
+                <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-coral)] dark:text-[var(--color-cyan)] mb-1">
+                  {project.category}
+                </span>
+
+                {/* Title */}
+                <h3 class="font-display font-semibold text-lg text-[var(--color-ink)] mb-2">
+                  {project.title}
+                </h3>
+
+                {/* Description */}
+                <p class="text-sm text-[var(--color-ink-light)] leading-relaxed mb-3 flex-1">
+                  {project.shortDescription}
+                </p>
+
+                {/* Tech stack links */}
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  {project.techStack.map(tech => (
+                    <a
+                      href={tech.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="skill-chip interactive"
+                      title={`${tech.name} — official documentation`}
+                    >
+                      {tech.name}
+                      <svg width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M12 8.67v5.33H2V4h5.33M9.33 2H14v4.67M6.67 9.33L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+
+                {/* ---- Accordion: Progressive Disclosure ---- */}
+                <div class="border-t-2 border-[var(--color-border)] dark:border-[var(--color-dark-border)] pt-3">
+                  <button
+                    class="accordion-toggle flex items-center gap-2 w-full text-left font-mono text-xs font-semibold tracking-wide uppercase text-[var(--color-muted)] hover:text-[var(--color-ink)] dark:hover:text-[var(--color-dark-ink)] transition-colors interactive bg-transparent border-none cursor-pointer p-0"
+                    data-accordion={`accordion-${i}`}
+                    aria-expanded="false"
+                  >
+                    <svg class="accordion-chevron transition-transform duration-300" width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Show more below</span>
+                  </button>
+
+                  <div class="accordion-content mt-2" id={`accordion-${i}`}>
+                    <div>
+                      <div class="bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] p-4 rounded-sm border border-[var(--color-border)] dark:border-[var(--color-dark-border)] space-y-3">
+                        <div>
+                          <h4 class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-coral)] dark:text-[var(--color-cyan)] mb-1">Overview</h4>
+                          <p class="text-sm text-[var(--color-ink-light)] leading-relaxed m-0">{project.deepDive.overview}</p>
+                        </div>
+                        <div>
+                          <h4 class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-coral)] dark:text-[var(--color-cyan)] mb-1">Architecture</h4>
+                          <p class="text-sm text-[var(--color-ink-light)] leading-relaxed m-0 font-mono text-xs">{project.deepDive.architecture}</p>
+                        </div>
+                        <div>
+                          <h4 class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-coral)] dark:text-[var(--color-cyan)] mb-1">Key Highlights</h4>
+                          <ul class="space-y-1 m-0 list-none p-0">
+                            {project.deepDive.keyPoints.map(point => (
+                              <li class="flex items-start gap-2 text-sm text-[var(--color-ink-light)]">
+                                <span class="text-[var(--color-coral)] dark:text-[var(--color-cyan)] mt-0.5 flex-shrink-0">&#x25B8;</span>
+                                <span>{point}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action buttons */}
+                <div class="flex gap-3 mt-4">
+                  <a href={project.demo} class="brutal-btn text-xs py-1.5 px-4 interactive">
+                    View Project
+                  </a>
+                  <a
+                    href={project.github}
+                    class="brutal-btn brutal-btn--dark text-xs py-1.5 px-4 interactive"
+                    aria-label={`View ${project.title} source on GitHub`}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    Code
+                  </a>
+                </div>
+              </div>
+
+              {/* Hover doodle overlay */}
+              <div class="doodle-overlay absolute inset-0 pointer-events-none hidden md:block" aria-hidden="true">
+                <svg class="absolute -top-2 -right-2 w-16 h-16" viewBox="0 0 64 64" fill="none">
+                  <circle cx="32" cy="32" r="28" stroke="var(--color-acid)" stroke-width="2.5" stroke-dasharray="8 4" />
+                  <text x="32" y="36" text-anchor="middle" font-size="10" fill="var(--color-coral)" font-family="sans-serif" font-weight="bold">&#x2728;</text>
+                </svg>
+                <svg class="absolute -bottom-1 -left-1 w-12 h-12" viewBox="0 0 48 48" fill="none">
+                  <rect x="4" y="4" width="40" height="40" rx="2" stroke="var(--color-coral)" stroke-width="2" stroke-dasharray="6 3" />
+                </svg>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Mobile swipe hint -->
+    <div class="md:hidden mt-3 flex items-center justify-center gap-2 text-[var(--color-muted)] animate-on-scroll">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M10 4l4 4-4 4M14 8H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="font-mono text-xs">Swipe or use arrows</span>
+    </div>
+  </div>
+
+  <!-- Image Modal (one per page) -->
+  <ImageModal />
+</section>
+
+<script>
+  // ===== Carousel Logic =====
+  (function() {
+    const track = document.getElementById('carousel-track');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const counter = document.getElementById('carousel-counter');
+    const cards = track?.querySelectorAll('.carousel-card');
+
+    if (!track || !cards.length) return;
+
+    let currentIndex = 0;
+    const totalCards = cards.length;
+    const cardsPerView = 3; // show 3 on desktop, handled by CSS
+    const maxIndex = Math.max(0, totalCards - cardsPerView);
+
+    function getCardWidth() {
+      const firstCard = cards[0];
+      const cardStyle = getComputedStyle(firstCard);
+      const trackStyle = getComputedStyle(track);
+      const gap = parseFloat(trackStyle.gap) || 24;
+      return firstCard.offsetWidth + gap;
+    }
+
+    function updateCarousel() {
+      const cardWidth = getCardWidth();
+      const offset = -currentIndex * cardWidth;
+      track.style.transform = `translateX(${offset}px)`;
+
+      // Update button states
+      if (prevBtn) {
+        prevBtn.disabled = currentIndex <= 0;
+        prevBtn.style.opacity = currentIndex <= 0 ? '0.4' : '1';
+      }
+      if (nextBtn) {
+        nextBtn.disabled = currentIndex >= maxIndex;
+        nextBtn.style.opacity = currentIndex >= maxIndex ? '0.4' : '1';
+      }
+
+      // Update counter
+      if (counter) {
+        counter.textContent = `${currentIndex + 1} / ${maxIndex + 1}`;
+      }
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && currentIndex < maxIndex) {
+          currentIndex++;
+        } else if (diff < 0 && currentIndex > 0) {
+          currentIndex--;
+        }
+        updateCarousel();
+      }
+    });
+
+    // Recalculate on resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // Recalculate maxIndex based on current viewport
+        // If viewport is small (< 768px), show 1 card at a time
+        const isSmall = window.innerWidth < 768;
+        const currentCardsPerView = isSmall ? 1 : cardsPerView;
+        const newMaxIndex = Math.max(0, totalCards - currentCardsPerView);
+        // Clamp current index
+        if (currentIndex > newMaxIndex) currentIndex = newMaxIndex;
+        // Re-apply with new maxIndex
+        updateCarousel();
+      }, 200);
+    });
+
+    // Initialize
+    updateCarousel();
+  })();
+
+  // ===== Accordion Logic =====
+  (function() {
+    document.querySelectorAll('.accordion-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-accordion');
+        const content = document.getElementById(targetId);
+        const chevron = btn.querySelector('.accordion-chevron');
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+        // Close
+        if (isOpen) {
+          btn.setAttribute('aria-expanded', 'false');
+          content?.classList.remove('open');
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
+        } else {
+          // Open
+          btn.setAttribute('aria-expanded', 'true');
+          content?.classList.add('open');
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  })();
+</script>

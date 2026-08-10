@@ -1,0 +1,595 @@
+---
+const repos = [
+  { name: 'smart-parking', lang: 'TypeScript', stars: 12, desc: 'IoT occupancy mesh with real-time dashboard', color: '#3178c6' },
+  { name: 'drone-fire-detect', lang: 'Python', stars: 8, desc: 'Onboard CV for autonomous wildfire detection', color: '#3776ab' },
+  { name: 'hexapod-robot', lang: 'C++', stars: 15, desc: 'Inverse-kinematics gait engine for 6-DOF bot', color: '#f34b7d' },
+  { name: 'obsidian-vault', lang: 'Markdown', stars: 22, desc: 'PKM system with custom plugins and workflows', color: '#8b8b8b' },
+];
+---
+
+<section id="playground" class="section bg-[var(--color-bg)]">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section header with lab-notebook feel -->
+    <div class="animate-on-scroll relative inline-block mb-4">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="font-mono text-xs tracking-widest uppercase text-[var(--color-muted)] bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] px-2 py-0.5 border border-[var(--color-border)] dark:border-[var(--color-dark-border)]">
+          &#x1F9EA; The Lab
+        </span>
+      </div>
+      <h2 class="section-title">
+        Experiments & Demos
+      </h2>
+      <svg class="doodle-underline" viewBox="0 0 230 12" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M4,7 Q28,1 55,6 T110,2 T170,6 T226,3" />
+      </svg>
+    </div>
+
+    <p class="animate-on-scroll font-display text-lg text-[var(--color-muted)] mb-10 max-w-xl">
+      A sandbox of half-built ideas and fully-working curiosities. Some are polished; some are glorified sticky notes. All of them taught me something.
+    </p>
+
+    <!-- ===== BENTO GRID ===== -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 stagger-children">
+
+      <!-- ===== Widget 1: Palette Generator ===== -->
+      <div class="brutal-card p-5 md:p-6" id="palette-gen">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-lg" aria-hidden="true">&#x1F3A8;</span>
+          <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-coral)] dark:text-[var(--color-cyan)]">CSS/JS Experiment</span>
+        </div>
+        <h3 class="font-display font-semibold text-lg text-[var(--color-ink)] mb-3">
+          Palette Generator
+        </h3>
+        <p class="text-sm text-[var(--color-ink-light)] mb-4">
+          Click to generate a harmonized color palette. Each click produces a new set of five colors you can use in your own projects. Click any swatch to copy its hex code.
+        </p>
+
+        <!-- Palette swatches -->
+        <div class="flex gap-1.5 mb-4" id="palette-swatches">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div
+              class="flex-1 aspect-square rounded-sm border border-[var(--color-border)] dark:border-[var(--color-dark-border)] transition-transform duration-200 hover:scale-110 cursor-pointer interactive"
+              id={`swatch-${i}`}
+              style="background: var(--color-surface-alt);"
+              title="Click to copy hex"
+            ></div>
+          ))}
+        </div>
+
+        <!-- Hex values -->
+        <div class="flex gap-1.5 mb-4" id="palette-hex">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span
+              class="flex-1 font-mono text-[10px] text-center text-[var(--color-muted)] truncate"
+              id={`hex-${i}`}
+            >-----</span>
+          ))}
+        </div>
+
+        <button id="generate-palette" class="brutal-btn text-sm py-2 px-5 interactive w-full justify-center">
+          Generate Palette
+        </button>
+      </div>
+
+      <!-- ===== Widget 2: Haptic Toggle ===== -->
+      <div class="brutal-card p-5 md:p-6" id="haptic-toggle-card">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-lg" aria-hidden="true">&#x1F3AE;</span>
+          <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-coral)] dark:text-[var(--color-cyan)]">CSS/JS Experiment</span>
+        </div>
+        <h3 class="font-display font-semibold text-lg text-[var(--color-ink)] mb-3">
+          Haptic Toggle
+        </h3>
+        <p class="text-sm text-[var(--color-ink-light)] mb-4">
+          A toggle switch with satisfying click feedback. Each flip triggers a subtle ripple and spring-back animation that mimics physical haptic response.
+        </p>
+
+        <!-- Toggle row -->
+        <div class="flex flex-col gap-4 mb-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-[var(--color-ink-light)] font-medium">Debug Mode</span>
+            <button
+              class="haptic-toggle relative w-14 h-7 rounded-full border-[3px] border-[var(--color-ink)] dark:border-[var(--color-dark-border)] bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] transition-colors duration-200 interactive"
+              role="switch"
+              aria-checked="false"
+              id="toggle-1"
+              aria-label="Debug Mode"
+            >
+              <span class="absolute top-[2px] left-[2px] w-[18px] h-[18px] rounded-sm bg-[var(--color-ink)] dark:bg-[var(--color-dark-ink)] transition-all duration-200 flex items-center justify-center">
+                <span class="block w-[8px] h-[8px] rounded-sm bg-[var(--color-bg)] transition-all duration-200"></span>
+              </span>
+            </button>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-[var(--color-ink-light)] font-medium">Lab Lights</span>
+            <button
+              class="haptic-toggle relative w-14 h-7 rounded-full border-[3px] border-[var(--color-ink)] dark:border-[var(--color-dark-border)] bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] transition-colors duration-200 interactive"
+              role="switch"
+              aria-checked="false"
+              id="toggle-2"
+              aria-label="Lab Lights"
+            >
+              <span class="absolute top-[2px] left-[2px] w-[18px] h-[18px] rounded-sm bg-[var(--color-ink)] dark:bg-[var(--color-dark-ink)] transition-all duration-200 flex items-center justify-center">
+                <span class="block w-[8px] h-[8px] rounded-sm bg-[var(--color-bg)] transition-all duration-200"></span>
+              </span>
+            </button>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-[var(--color-ink-light)] font-medium">Ship Mode</span>
+            <button
+              class="haptic-toggle relative w-14 h-7 rounded-full border-[3px] border-[var(--color-ink)] dark:border-[var(--color-dark-border)] bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] transition-colors duration-200 interactive"
+              role="switch"
+              aria-checked="true"
+              id="toggle-3"
+              aria-label="Ship Mode"
+            >
+              <span class="absolute top-[2px] left-[2px] w-[18px] h-[18px] rounded-sm bg-[var(--color-ink)] dark:bg-[var(--color-cyan)] transition-all duration-200 flex items-center justify-center translate-x-[26px]">
+                <span class="block w-[8px] h-[8px] rounded-sm bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] transition-all duration-200"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Status indicator -->
+        <p class="font-mono text-xs text-[var(--color-muted)]" id="toggle-status">
+          Active toggles: <span id="active-count" class="text-[var(--color-coral)] dark:text-[var(--color-cyan)] font-semibold">1</span> / 3
+        </p>
+      </div>
+
+      <!-- ===== Widget 3: Sensor Calibration Tool ===== -->
+      <div class="brutal-card p-5 md:p-6" id="sensor-calibration">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-lg" aria-hidden="true">&#x1F4E1;</span>
+          <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-sage-dark)] dark:text-[var(--color-teal)]">Hardware Sim</span>
+        </div>
+        <h3 class="font-display font-semibold text-lg text-[var(--color-ink)] mb-3">
+          Sensor Calibration Tool
+        </h3>
+        <p class="text-sm text-[var(--color-ink-light)] mb-4">
+          Simulates an ADC sensor input and shows how calibration offset and gain affect the final reading. Dial the sliders to see how raw values get processed in a real embedded system.
+        </p>
+
+        <!-- Sensor visualization -->
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <!-- Raw reading gauge -->
+          <div class="bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] p-4 rounded-sm border border-[var(--color-border)] dark:border-[var(--color-dark-border)] text-center">
+            <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-muted)] block mb-2">Raw ADC</span>
+            <span class="font-mono text-3xl font-bold text-[var(--color-ink)] block" id="cal-raw-value">512</span>
+            <span class="font-mono text-[10px] text-[var(--color-muted)]">0 – 1023</span>
+          </div>
+          <!-- Calibrated output -->
+          <div class="bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] p-4 rounded-sm border border-[var(--color-border)] dark:border-[var(--color-dark-border)] text-center">
+            <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-muted)] block mb-2">Calibrated</span>
+            <span class="font-mono text-3xl font-bold text-[var(--color-coral)] dark:text-[var(--color-cyan)] block" id="cal-output-value">512.0</span>
+            <span class="font-mono text-[10px] text-[var(--color-muted)]">output</span>
+          </div>
+        </div>
+
+        <!-- Signal level bar -->
+        <div class="mb-2">
+          <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-muted)]">Signal Level</span>
+        </div>
+        <div class="h-6 border-2 border-[var(--color-ink)] dark:border-[var(--color-dark-border)] rounded-sm bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] overflow-hidden mb-4">
+          <div id="cal-signal-bar" class="h-full transition-all duration-150 ease-out" style="width: 50%; background: linear-gradient(to right, #22c55e 0%, #eab308 50%, #ef4444 100%);"></div>
+        </div>
+
+        <!-- Sliders -->
+        <div class="space-y-4 mb-4">
+          <div>
+            <div class="flex justify-between mb-1">
+              <label class="font-mono text-xs text-[var(--color-ink-light)]" for="cal-raw-slider">Raw Sensor Value</label>
+              <span class="font-mono text-xs text-[var(--color-coral)] dark:text-[var(--color-cyan)]" id="cal-raw-val">512</span>
+            </div>
+            <input type="range" id="cal-raw-slider" class="lab-slider" min="0" max="1023" value="512" />
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <label class="font-mono text-xs text-[var(--color-ink-light)]" for="cal-offset-slider">Calibration Offset</label>
+              <span class="font-mono text-xs text-[var(--color-coral)] dark:text-[var(--color-cyan)]" id="cal-offset-val">0</span>
+            </div>
+            <input type="range" id="cal-offset-slider" class="lab-slider" min="-100" max="100" value="0" />
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <label class="font-mono text-xs text-[var(--color-ink-light)]" for="cal-gain-slider">Gain Multiplier</label>
+              <span class="font-mono text-xs text-[var(--color-coral)] dark:text-[var(--color-cyan)]" id="cal-gain-val">1.0x</span>
+            </div>
+            <input type="range" id="cal-gain-slider" class="lab-slider" min="0.5" max="3.0" step="0.1" value="1.0" />
+          </div>
+        </div>
+
+        <!-- Terminal output -->
+        <div class="terminal-display mb-3" id="cal-terminal" aria-label="Simulated serial output">
+          > Reading sensor...<br/>
+          > ADC: 512 | Offset: 0 | Gain: 1.0x<br/>
+          > Calibrated: 512.0
+        </div>
+
+        <button id="cal-reset" class="brutal-btn text-xs py-1.5 px-4 interactive">
+          Reset Calibration
+        </button>
+      </div>
+
+      <!-- ===== Widget 4: Image Color Editor ===== -->
+      <div class="brutal-card p-5 md:p-6" id="color-editor">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-lg" aria-hidden="true">&#x1F4F7;</span>
+          <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-sage-dark)] dark:text-[var(--color-teal)]">Image Filter</span>
+        </div>
+        <h3 class="font-display font-semibold text-lg text-[var(--color-ink)] mb-3">
+          Image Color Editor
+        </h3>
+        <p class="text-sm text-[var(--color-ink-light)] mb-4">
+          Adjust hue, saturation, contrast, and brightness on a sample image using CSS filters. The effect applies in real-time — drag the sliders and watch the image transform.
+        </p>
+
+        <!-- Image preview -->
+        <div class="aspect-video bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] mb-4 flex items-center justify-center overflow-hidden border-2 border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-sm">
+          <img
+            id="color-editor-img"
+            src="https://placehold.co/600x360/161B26/E2FF52?text=Sample+Image"
+            class="w-full h-full object-cover transition-none"
+            alt="Sample image for color editing — a geometric pattern"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- 4 sliders in 2x2 grid -->
+        <div class="grid grid-cols-2 gap-x-4 gap-y-3 mb-4">
+          <div>
+            <div class="flex justify-between mb-1">
+              <label class="font-mono text-[10px] text-[var(--color-ink-light)]" for="hue-slider">Hue Rotate</label>
+              <span class="font-mono text-[10px] text-[var(--color-coral)] dark:text-[var(--color-cyan)]" id="hue-val">0°</span>
+            </div>
+            <input type="range" id="hue-slider" class="lab-slider" min="0" max="360" value="0" />
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <label class="font-mono text-[10px] text-[var(--color-ink-light)]" for="sat-slider">Saturation</label>
+              <span class="font-mono text-[10px] text-[var(--color-coral)] dark:text-[var(--color-cyan)]" id="sat-val">100%</span>
+            </div>
+            <input type="range" id="sat-slider" class="lab-slider" min="0" max="200" value="100" />
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <label class="font-mono text-[10px] text-[var(--color-ink-light)]" for="con-slider">Contrast</label>
+              <span class="font-mono text-[10px] text-[var(--color-coral)] dark:text-[var(--color-cyan)]" id="con-val">100%</span>
+            </div>
+            <input type="range" id="con-slider" class="lab-slider" min="0" max="200" value="100" />
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <label class="font-mono text-[10px] text-[var(--color-ink-light)]" for="bri-slider">Brightness</label>
+              <span class="font-mono text-[10px] text-[var(--color-coral)] dark:text-[var(--color-cyan)]" id="bri-val">100%</span>
+            </div>
+            <input type="range" id="bri-slider" class="lab-slider" min="0" max="200" value="100" />
+          </div>
+        </div>
+
+        <!-- CSS filter output -->
+        <div class="bg-[var(--color-ink)] text-[var(--color-bg)] dark:bg-[var(--color-dark-surface)] dark:text-[var(--color-dark-ink)] p-3 rounded-sm mb-3 overflow-x-auto">
+          <code id="filter-code" class="font-mono text-xs whitespace-nowrap">filter: hue-rotate(0deg) saturate(100%) contrast(100%) brightness(100%);</code>
+        </div>
+
+        <div class="flex gap-2">
+          <button id="copy-filter-btn" class="brutal-btn text-xs py-1.5 px-4 interactive">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M11 5V2.5a1 1 0 0 0-1-1H2.5a1 1 0 0 0-1 1V10a1 1 0 0 0 1 1H5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            Copy CSS
+          </button>
+          <button id="reset-filter-btn" class="brutal-btn brutal-btn--dark text-xs py-1.5 px-4 interactive">
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- ===== Widget 5: Live ML Demo Placeholder ===== -->
+      <div class="brutal-card p-5 md:p-6">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-lg" aria-hidden="true">&#x1F4CA;</span>
+          <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-sage-dark)] dark:text-[var(--color-teal)]">Live Demo</span>
+        </div>
+        <h3 class="font-display font-semibold text-lg text-[var(--color-ink)] mb-3">
+          Real-Time ML Predictor
+        </h3>
+        <p class="text-sm text-[var(--color-ink-light)] mb-4">
+          A lightweight time-series forecasting demo trained on sensor data. Adjust the input parameters and watch the model predict in real time. [PLACEHOLDER]
+        </p>
+        <div class="bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] border border-dashed border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-sm p-8 flex items-center justify-center aspect-video">
+          <div class="text-center">
+            <span class="text-3xl block mb-2" aria-hidden="true">&#x1F9EA;</span>
+            <p class="font-mono text-xs text-[var(--color-muted)]">
+              ML Demo Embed<br/>
+              <span class="text-[10px]">[PLACEHOLDER — embed Streamlit/Hugging Face iframe]</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Widget 6: IoT Simulation Card ===== -->
+      <div class="brutal-card p-5 md:p-6">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-lg" aria-hidden="true">&#x1F527;</span>
+          <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-sage-dark)] dark:text-[var(--color-teal)]">Simulation</span>
+        </div>
+        <h3 class="font-display font-semibold text-lg text-[var(--color-ink)] mb-3">
+          IoT Sensor Sandbox
+        </h3>
+        <p class="text-sm text-[var(--color-ink-light)] mb-4">
+          Simulated ESP32 sensor mesh streaming live MQTT data. A virtual breadboard environment for testing IoT logic without hardware. [PLACEHOLDER]
+        </p>
+        <div class="bg-[var(--color-surface-alt)] dark:bg-[var(--color-dark-surface-alt)] border border-dashed border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-sm p-8 flex items-center justify-center aspect-video">
+          <div class="text-center">
+            <span class="text-3xl block mb-2" aria-hidden="true">&#x1F4E1;</span>
+            <p class="font-mono text-xs text-[var(--color-muted)]">
+              Wokwi / Tinkercad Embed<br/>
+              <span class="text-[10px]">[PLACEHOLDER — embed simulation iframe]</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== GitHub Repo Cards Row ===== -->
+    <div class="mt-8 animate-on-scroll">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="text-lg" aria-hidden="true">&#x1F4E6;</span>
+        <h3 class="font-display font-semibold text-base text-[var(--color-ink)] m-0">
+          Code on GitHub
+        </h3>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {repos.map(repo => (
+          <a
+            href="#"
+            class="brutal-card p-4 no-underline interactive group block"
+          >
+            <div class="flex items-center gap-2 mb-2">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="var(--color-ink)" aria-hidden="true">
+                <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 010-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 11-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/>
+              </svg>
+              <span class="font-mono font-semibold text-sm text-[var(--color-ink)] truncate">
+                {repo.name}
+              </span>
+            </div>
+            <p class="text-xs text-[var(--color-ink-light)] mb-3 line-clamp-2 min-h-[2.5em]">
+              {repo.desc}
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="flex items-center gap-1" aria-hidden="true">
+                <span class="w-2.5 h-2.5 rounded-full inline-block" style={`background: ${repo.color};`}></span>
+                <span class="font-mono text-[10px] text-[var(--color-muted)]">{repo.lang}</span>
+              </span>
+              <span class="flex items-center gap-1 text-[var(--color-muted)]">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.751.751 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/>
+                </svg>
+                <span class="font-mono text-[10px]">{repo.stars}</span>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // ===== Palette Generator =====
+  (function() {
+    function randomHSL() {
+      const h = Math.floor(Math.random() * 360);
+      const s = 40 + Math.floor(Math.random() * 40);
+      const l = 40 + Math.floor(Math.random() * 30);
+      return { h, s, l };
+    }
+
+    function hslToHex(h, s, l) {
+      s /= 100;
+      l /= 100;
+      const a = s * Math.min(l, 1 - l);
+      const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+      };
+      return `#${f(0)}${f(8)}${f(4)}`;
+    }
+
+    function generatePalette() {
+      const base = randomHSL();
+      const colors = [];
+      for (let i = 0; i < 5; i++) {
+        const h = (base.h + i * 42 + Math.floor(Math.random() * 20)) % 360;
+        const s = Math.min(85, base.s + Math.floor(Math.random() * 20) - 10);
+        const l = Math.max(25, Math.min(75, base.l + (i - 2) * 12 + Math.floor(Math.random() * 10)));
+        colors.push({ h, s, l });
+      }
+      return colors.map(c => hslToHex(c.h, c.s, c.l));
+    }
+
+    const genBtn = document.getElementById('generate-palette');
+    genBtn?.addEventListener('click', () => {
+      const palette = generatePalette();
+      palette.forEach((hex, i) => {
+        const swatch = document.getElementById(`swatch-${i}`);
+        const hexEl = document.getElementById(`hex-${i}`);
+        if (swatch) swatch.style.background = hex;
+        if (hexEl) hexEl.textContent = hex;
+      });
+    });
+
+    // Copy on swatch click
+    for (let i = 0; i < 5; i++) {
+      document.getElementById(`swatch-${i}`)?.addEventListener('click', async () => {
+        const hex = document.getElementById(`hex-${i}`)?.textContent;
+        if (hex && hex !== '-----') {
+          try { await navigator.clipboard.writeText(hex); } catch {}
+        }
+      });
+    }
+
+    // Initial palette
+    genBtn?.click();
+  })();
+
+  // ===== Haptic Toggles =====
+  (function() {
+    const toggles = document.querySelectorAll('.haptic-toggle');
+    const statusEl = document.getElementById('active-count');
+
+    function updateStatus() {
+      let count = 0;
+      toggles.forEach(t => { if (t.getAttribute('aria-checked') === 'true') count++; });
+      if (statusEl) statusEl.textContent = String(count);
+    }
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const checked = this.getAttribute('aria-checked') === 'true';
+        const newState = !checked;
+        this.setAttribute('aria-checked', String(newState));
+
+        const knob = this.querySelector('span:first-child');
+        const innerDot = knob?.querySelector('span');
+
+        if (newState) {
+          if (knob) {
+            knob.style.transform = 'translateX(26px)';
+            knob.style.background = 'var(--color-coral)';
+          }
+        } else {
+          if (knob) {
+            knob.style.transform = 'translateX(0)';
+            knob.style.background = '';
+          }
+        }
+
+        // Ripple effect
+        if (innerDot) {
+          innerDot.style.transform = 'scale(0.4)';
+          setTimeout(() => { innerDot.style.transform = 'scale(1)'; }, 100);
+        }
+
+        updateStatus();
+      });
+    });
+  })();
+
+  // ===== Sensor Calibration Tool =====
+  (function() {
+    const rawSlider = document.getElementById('cal-raw-slider');
+    const offsetSlider = document.getElementById('cal-offset-slider');
+    const gainSlider = document.getElementById('cal-gain-slider');
+    const signalBar = document.getElementById('cal-signal-bar');
+    const terminal = document.getElementById('cal-terminal');
+
+    function update() {
+      const raw = parseInt(rawSlider?.value || 512);
+      const offset = parseInt(offsetSlider?.value || 0);
+      const gain = parseFloat(gainSlider?.value || 1.0);
+      const calibrated = (raw + offset) * gain;
+      const signalPercent = Math.max(0, Math.min(100, (calibrated / 2046) * 100));
+
+      // Update UI
+      if (signalBar) signalBar.style.width = signalPercent + '%';
+
+      const rawVal = document.getElementById('cal-raw-val');
+      const offsetVal = document.getElementById('cal-offset-val');
+      const gainVal = document.getElementById('cal-gain-val');
+      const rawValue = document.getElementById('cal-raw-value');
+      const outputValue = document.getElementById('cal-output-value');
+
+      if (rawVal) rawVal.textContent = raw;
+      if (offsetVal) offsetVal.textContent = (offset >= 0 ? '+' : '') + offset;
+      if (gainVal) gainVal.textContent = gain.toFixed(1) + 'x';
+      if (rawValue) rawValue.textContent = raw;
+      if (outputValue) outputValue.textContent = calibrated.toFixed(1);
+
+      // Terminal output
+      if (terminal) {
+        terminal.innerHTML = `> Reading sensor...<br/>> ADC: ${raw} | Offset: ${offset >= 0 ? '+' : ''}${offset} | Gain: ${gain.toFixed(1)}x<br/>> Calibrated: ${calibrated.toFixed(1)}`;
+      }
+    }
+
+    rawSlider?.addEventListener('input', update);
+    offsetSlider?.addEventListener('input', update);
+    gainSlider?.addEventListener('input', update);
+
+    document.getElementById('cal-reset')?.addEventListener('click', () => {
+      if (rawSlider) rawSlider.value = 512;
+      if (offsetSlider) offsetSlider.value = 0;
+      if (gainSlider) gainSlider.value = 1.0;
+      update();
+    });
+
+    update();
+  })();
+
+  // ===== Image Color Editor =====
+  (function() {
+    const img = document.getElementById('color-editor-img');
+    const code = document.getElementById('filter-code');
+    const sliders = {
+      hue: document.getElementById('hue-slider'),
+      sat: document.getElementById('sat-slider'),
+      con: document.getElementById('con-slider'),
+      bri: document.getElementById('bri-slider'),
+    };
+
+    function update() {
+      if (!img || !code) return;
+      const h = parseInt(sliders.hue?.value || 0);
+      const s = parseInt(sliders.sat?.value || 100);
+      const c = parseInt(sliders.con?.value || 100);
+      const b = parseInt(sliders.bri?.value || 100);
+      const filter = `hue-rotate(${h}deg) saturate(${s}%) contrast(${c}%) brightness(${b}%)`;
+      img.style.filter = filter;
+      code.textContent = `filter: ${filter};`;
+
+      const hueVal = document.getElementById('hue-val');
+      const satVal = document.getElementById('sat-val');
+      const conVal = document.getElementById('con-val');
+      const briVal = document.getElementById('bri-val');
+      if (hueVal) hueVal.textContent = h + '°';
+      if (satVal) satVal.textContent = s + '%';
+      if (conVal) conVal.textContent = c + '%';
+      if (briVal) briVal.textContent = b + '%';
+    }
+
+    Object.values(sliders).forEach(s => s?.addEventListener('input', update));
+
+    document.getElementById('copy-filter-btn')?.addEventListener('click', async () => {
+      if (code) {
+        try {
+          await navigator.clipboard.writeText(code.textContent || '');
+          const btn = document.getElementById('copy-filter-btn');
+          if (btn) {
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '&#x2714; Copied!';
+            btn.style.opacity = '0.7';
+            setTimeout(() => {
+              btn.innerHTML = originalHTML;
+              btn.style.opacity = '1';
+            }, 1500);
+          }
+        } catch {}
+      }
+    });
+
+    document.getElementById('reset-filter-btn')?.addEventListener('click', () => {
+      if (sliders.hue) sliders.hue.value = 0;
+      if (sliders.sat) sliders.sat.value = 100;
+      if (sliders.con) sliders.con.value = 100;
+      if (sliders.bri) sliders.bri.value = 100;
+      update();
+    });
+
+    update();
+  })();
+</script>

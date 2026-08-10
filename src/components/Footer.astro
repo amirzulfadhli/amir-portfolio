@@ -1,0 +1,43 @@
+<footer class="border-t-[3px] border-[var(--color-ink)] dark:border-[var(--color-dark-border)] bg-[var(--color-ink)] dark:bg-[var(--color-dark-bg)] text-[var(--color-bg)] dark:text-[var(--color-dark-ink)]">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <!-- Brand -->
+      <div class="flex items-center gap-2">
+        <span class="font-mono text-[var(--color-coral)] dark:text-[var(--color-cyan)] text-sm">&gt;</span>
+        <span class="font-display font-bold text-sm tracking-tight">Amir Zulfadhli</span>
+        <span class="font-mono text-[10px] text-[var(--color-dark-muted)] ml-2 hidden sm:inline">
+          &copy; {new Date().getFullYear()}
+        </span>
+      </div>
+
+      <!-- Quick links -->
+      <div class="flex items-center gap-4">
+        <a href="#home" class="font-mono text-xs text-[var(--color-dark-muted)] no-underline hover:text-[var(--color-acid)] dark:hover:text-[var(--color-cyan)] transition-colors interactive">Home</a>
+        <a href="#about" class="font-mono text-xs text-[var(--color-dark-muted)] no-underline hover:text-[var(--color-acid)] dark:hover:text-[var(--color-cyan)] transition-colors interactive">About</a>
+        <a href="#projects" class="font-mono text-xs text-[var(--color-dark-muted)] no-underline hover:text-[var(--color-acid)] dark:hover:text-[var(--color-cyan)] transition-colors interactive">Projects</a>
+        <a href="#contact" class="font-mono text-xs text-[var(--color-dark-muted)] no-underline hover:text-[var(--color-acid)] dark:hover:text-[var(--color-cyan)] transition-colors interactive">Contact</a>
+      </div>
+
+      <!-- Back to top -->
+      <a
+        href="#home"
+        class="flex items-center gap-1.5 font-mono text-xs text-[var(--color-dark-muted)] no-underline hover:text-[var(--color-acid)] dark:hover:text-[var(--color-cyan)] transition-colors interactive"
+      >
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to top
+      </a>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="mt-6 pt-4 border-t border-[var(--color-dark-border)] flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p class="font-mono text-[10px] text-[var(--color-dark-muted)] m-0">
+        Built with Astro, Tailwind CSS, and late-night curiosity. No heavy frameworks harmed in the making.
+      </p>
+      <p class="font-mono text-[10px] text-[var(--color-dark-muted)] m-0">
+        Designed &amp; built in the lab &#x1F9EA; &middot; Created by Amir Zulfadhli
+      </p>
+    </div>
+  </div>
+</footer>

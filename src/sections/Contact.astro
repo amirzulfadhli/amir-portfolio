@@ -1,0 +1,184 @@
+<section id="contact" class="section bg-[var(--color-surface)]">
+  <div class="max-w-4xl mx-auto">
+    <!-- Section header -->
+    <div class="animate-on-scroll relative inline-block mb-6">
+      <h2 class="section-title">
+        Let&rsquo;s Connect
+      </h2>
+      <svg class="doodle-underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M4,5 Q25,2 50,7 T100,3 T150,6 T196,2" />
+      </svg>
+    </div>
+
+    <p class="animate-on-scroll font-display text-lg text-[var(--color-muted)] mb-10">
+      Whether it&rsquo;s a university program, a hackathon team, or a wild hardware-meets-ML idea — my inbox is open.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 stagger-children">
+      <!-- Contact Form (3/5) -->
+      <div class="md:col-span-3">
+        <form class="brutal-card p-6 space-y-5" id="contact-form" action="#" method="POST">
+          <div>
+            <label for="name" class="block font-mono text-xs tracking-widest uppercase text-[var(--color-ink-light)] mb-1.5">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Your name"
+              class="w-full px-4 py-3 font-sans text-sm bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] border-[2px] border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-[var(--radius-brutal)] text-[var(--color-ink)] dark:text-[var(--color-dark-ink)] placeholder:text-[var(--color-muted)] focus:border-[var(--color-coral)] dark:focus:border-[var(--color-cyan)] focus:outline-none transition-colors interactive"
+            />
+          </div>
+          <div>
+            <label for="email" class="block font-mono text-xs tracking-widest uppercase text-[var(--color-ink-light)] mb-1.5">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="you@example.com"
+              class="w-full px-4 py-3 font-sans text-sm bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] border-[2px] border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-[var(--radius-brutal)] text-[var(--color-ink)] dark:text-[var(--color-dark-ink)] placeholder:text-[var(--color-muted)] focus:border-[var(--color-coral)] dark:focus:border-[var(--color-cyan)] focus:outline-none transition-colors interactive"
+            />
+          </div>
+          <div>
+            <label for="message" class="block font-mono text-xs tracking-widest uppercase text-[var(--color-ink-light)] mb-1.5">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows={5}
+              placeholder="Tell me about your project, program, or idea..."
+              class="w-full px-4 py-3 font-sans text-sm bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] border-[2px] border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-[var(--radius-brutal)] text-[var(--color-ink)] dark:text-[var(--color-dark-ink)] placeholder:text-[var(--color-muted)] focus:border-[var(--color-coral)] dark:focus:border-[var(--color-cyan)] focus:outline-none resize-y transition-colors interactive"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="brutal-btn brutal-btn--coral text-base px-8 py-3 interactive w-full sm:w-auto">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 2l12 6-12 6 3-6-3-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Social & Info Column (2/5) -->
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <!-- Social links card -->
+        <div class="brutal-card p-5">
+          <span class="font-mono text-[10px] tracking-widest uppercase text-[var(--color-ink-light)] mb-3 block">
+            &#x25E6; Find Me
+          </span>
+          <div class="flex flex-col gap-2.5">
+            <!-- GitHub -->
+            <a
+              href="https://github.com/amirzulfadhli"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-3 bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] border-[2px] border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-[var(--radius-brutal)] no-underline text-[var(--color-ink)] dark:text-[var(--color-dark-ink)] hover:border-[var(--color-coral)] dark:hover:border-[var(--color-cyan)] transition-colors group interactive"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span class="font-display font-medium text-sm">GitHub</span>
+              <span class="font-mono text-[10px] text-[var(--color-muted)] ml-auto hidden sm:inline">@amirzulfadhli</span>
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+              href="https://linkedin.com/in/amirzulfadhli"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-3 bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] border-[2px] border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-[var(--radius-brutal)] no-underline text-[var(--color-ink)] dark:text-[var(--color-dark-ink)] hover:border-[var(--color-coral)] dark:hover:border-[var(--color-cyan)] transition-colors group interactive"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span class="font-display font-medium text-sm">LinkedIn</span>
+              <span class="font-mono text-[10px] text-[var(--color-muted)] ml-auto hidden sm:inline">@amirzulfadhli</span>
+            </a>
+
+            <!-- YouTube -->
+            <a
+              href="https://youtube.com/@amirzulfadhli"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-3 bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] border-[2px] border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-[var(--radius-brutal)] no-underline text-[var(--color-ink)] dark:text-[var(--color-dark-ink)] hover:border-[var(--color-coral)] dark:hover:border-[var(--color-cyan)] transition-colors group interactive"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span class="font-display font-medium text-sm">YouTube</span>
+              <span class="font-mono text-[10px] text-[var(--color-muted)] ml-auto hidden sm:inline">@amirzulfadhli</span>
+            </a>
+
+            <!-- Instagram -->
+            <a
+              href="https://instagram.com/amirzulfadhli"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-3 bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] border-[2px] border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-[var(--radius-brutal)] no-underline text-[var(--color-ink)] dark:text-[var(--color-dark-ink)] hover:border-[var(--color-coral)] dark:hover:border-[var(--color-cyan)] transition-colors group interactive"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+              <span class="font-display font-medium text-sm">Instagram</span>
+              <span class="font-mono text-[10px] text-[var(--color-muted)] ml-auto hidden sm:inline">@amirzulfadhli</span>
+            </a>
+
+            <!-- Twitter / X -->
+            <a
+              href="https://x.com/amirzulfadhli"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-3 bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] border-[2px] border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-[var(--radius-brutal)] no-underline text-[var(--color-ink)] dark:text-[var(--color-dark-ink)] hover:border-[var(--color-coral)] dark:hover:border-[var(--color-cyan)] transition-colors group interactive"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span class="font-display font-medium text-sm">X / Twitter</span>
+              <span class="font-mono text-[10px] text-[var(--color-muted)] ml-auto hidden sm:inline">@amirzulfadhli</span>
+            </a>
+
+            <!-- Email -->
+            <a
+              href="mailto:amir@example.com"
+              class="flex items-center gap-3 p-3 bg-[var(--color-bg)] dark:bg-[var(--color-dark-bg)] border-[2px] border-[var(--color-border)] dark:border-[var(--color-dark-border)] rounded-[var(--radius-brutal)] no-underline text-[var(--color-ink)] dark:text-[var(--color-dark-ink)] hover:border-[var(--color-coral)] dark:hover:border-[var(--color-cyan)] transition-colors group interactive"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span class="font-display font-medium text-sm">Email</span>
+              <span class="font-mono text-[10px] text-[var(--color-muted)] ml-auto hidden sm:inline">[PLACEHOLDER]</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Closing tagline card -->
+        <div class="brutal-card p-5 bg-[var(--color-ink)] text-[var(--color-bg)] dark:bg-[var(--color-dark-surface)] dark:text-[var(--color-dark-ink)] dark:border-[var(--color-dark-border)]">
+          <p class="font-display text-lg md:text-xl font-medium leading-snug m-0">
+            &ldquo;Let&rsquo;s build something that <span class="text-[var(--color-acid)] dark:text-[var(--color-cyan)]">shouldn&rsquo;t exist</span> yet.&rdquo;
+          </p>
+          <div class="mt-3 flex items-center gap-2">
+            <span class="font-mono text-xs text-[var(--color-dark-muted)]">— The Lab is always open</span>
+            <svg width="32" height="12" viewBox="0 0 32 12" fill="none" aria-hidden="true">
+              <path d="M2,6 Q8,2 14,6 T26,6 T30,4" stroke="var(--color-coral)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const form = document.getElementById('contact-form');
+    form?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      const originalHTML = btn?.innerHTML;
+      if (btn) {
+        btn.innerHTML = '&#x2714; Sent!';
+        btn.classList.add('opacity-70', 'pointer-events-none');
+        setTimeout(() => {
+          btn.innerHTML = originalHTML || 'Send Message';
+          btn.classList.remove('opacity-70', 'pointer-events-none');
+        }, 2500);
+      }
+    });
+  })();
+</script>

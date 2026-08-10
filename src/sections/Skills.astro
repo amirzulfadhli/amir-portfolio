@@ -1,0 +1,238 @@
+---
+const skillCategories = [
+  {
+    emoji: '&#x1F4BB;',
+    label: 'Languages',
+    skills: [
+      { name: 'TypeScript', url: 'https://www.typescriptlang.org/' },
+      { name: 'JavaScript', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
+      { name: 'Python', url: 'https://www.python.org/' },
+      { name: 'C++', url: 'https://isocpp.org/' },
+      { name: 'SQL', url: 'https://www.postgresql.org/' },
+      { name: 'Rust', url: 'https://www.rust-lang.org/', note: 'learning' },
+    ],
+    accent: 'coral',
+  },
+  {
+    emoji: '&#x1F3AF;',
+    label: 'Frameworks & Tools',
+    skills: [
+      { name: 'React', url: 'https://react.dev/' },
+      { name: 'Next.js', url: 'https://nextjs.org/' },
+      { name: 'Node.js', url: 'https://nodejs.org/' },
+      { name: 'Express', url: 'https://expressjs.com/' },
+      { name: 'FastAPI', url: 'https://fastapi.tiangolo.com/' },
+      { name: 'Tailwind CSS', url: 'https://tailwindcss.com/' },
+      { name: 'Astro', url: 'https://astro.build/' },
+    ],
+    accent: 'electric',
+  },
+  {
+    emoji: '&#x1F527;',
+    label: 'Hardware / IoT',
+    skills: [
+      { name: 'Arduino', url: 'https://www.arduino.cc/' },
+      { name: 'ESP32', url: 'https://www.espressif.com/en/products/socs/esp32' },
+      { name: 'Raspberry Pi', url: 'https://www.raspberrypi.com/' },
+      { name: 'ROS/ROS2', url: 'https://docs.ros.org/en/humble/' },
+      { name: 'MQTT', url: 'https://mqtt.org/' },
+      { name: 'PID Control', url: 'https://en.wikipedia.org/wiki/PID_controller' },
+    ],
+    accent: 'sage',
+  },
+  {
+    emoji: '&#x1F9E0;',
+    label: 'ML / AI',
+    skills: [
+      { name: 'scikit-learn', url: 'https://scikit-learn.org/' },
+      { name: 'XGBoost', url: 'https://xgboost.readthedocs.io/' },
+      { name: 'Pandas', url: 'https://pandas.pydata.org/' },
+      { name: 'OpenCV', url: 'https://opencv.org/' },
+      { name: 'YOLO', url: 'https://docs.ultralytics.com/' },
+      { name: 'Streamlit', url: 'https://streamlit.io/' },
+    ],
+    accent: 'lavender',
+  },
+  {
+    emoji: '&#x26F0;',
+    label: 'DevOps & Infra',
+    skills: [
+      { name: 'Docker', url: 'https://www.docker.com/' },
+      { name: 'Git', url: 'https://git-scm.com/' },
+      { name: 'Linux', url: 'https://www.kernel.org/' },
+      { name: 'GitHub Actions', url: 'https://docs.github.com/en/actions' },
+      { name: 'AWS', url: 'https://aws.amazon.com/', note: 'basics' },
+      { name: 'PostgreSQL', url: 'https://www.postgresql.org/' },
+    ],
+    accent: 'coral',
+  },
+  {
+    emoji: '&#x1F3AE;',
+    label: 'Currently Exploring',
+    skills: [
+      { name: 'TinyML', url: 'https://www.tinyml.org/' },
+      { name: 'ROS2 Humble', url: 'https://docs.ros.org/en/humble/' },
+      { name: 'WebSerial API', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API' },
+      { name: 'Zig', url: 'https://ziglang.org/' },
+      { name: 'NVIDIA Jetson', url: 'https://developer.nvidia.com/embedded/jetson-nano' },
+    ],
+    accent: 'electric',
+  },
+];
+---
+
+<section id="skills" class="section bg-[var(--color-surface)]">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section header with edit toggle -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+      <div class="animate-on-scroll relative inline-block">
+        <h2 class="section-title">
+          The Toolkit
+        </h2>
+        <svg class="doodle-underline" viewBox="0 0 180 12" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M4,6 Q22,1 45,5 T90,3 T135,6 T176,2" />
+        </svg>
+      </div>
+
+      <!-- Edit Mode Toggle -->
+      <button
+        id="skills-edit-toggle"
+        class="animate-on-scroll brutal-btn brutal-btn--ghost text-xs py-1.5 px-4 interactive"
+        aria-label="Toggle skill editing mode"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+        <span id="edit-mode-label">Edit Mode</span>
+      </button>
+    </div>
+
+    <!-- Skills grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 stagger-children" id="skills-grid">
+      {skillCategories.map((cat, catIdx) => {
+        const accentColor = cat.accent === 'electric' ? 'var(--color-acid)' :
+                            cat.accent === 'sage' ? 'var(--color-sage-dark)' :
+                            cat.accent === 'lavender' ? '#C9C0D8' :
+                            'var(--color-coral)';
+
+        const bgTintLight = cat.accent === 'electric' ? 'rgba(226,255,82,0.08)' :
+                           cat.accent === 'sage' ? 'rgba(158,176,162,0.12)' :
+                           cat.accent === 'lavender' ? 'rgba(201,192,216,0.12)' :
+                           'rgba(255,107,74,0.06)';
+
+        return (
+          <div class="brutal-card p-5 md:p-6 skill-category" style={`background: ${bgTintLight};`} data-category={catIdx}>
+            {/* Category header */}
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-2xl" aria-hidden="true" set:html={cat.emoji} />
+              <h3 class="font-display font-semibold text-base text-[var(--color-ink)] m-0">
+                {cat.label}
+              </h3>
+              {/* Skill level bar */}
+              <div class="ml-auto flex items-center gap-1" aria-hidden="true">
+                {Array.from({ length: 5 }).map((_, levelIdx) => {
+                  const filled = levelIdx < Math.min(5, Math.ceil(cat.skills.length / 3));
+                  return (
+                    <span class={`block w-1.5 h-3 rounded-full ${filled ? 'opacity-100' : 'opacity-20'}`} style={`background: ${accentColor};`}></span>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Skill chips */}
+            <div class="flex flex-wrap gap-2" data-category-chips={catIdx}>
+              {cat.skills.map((skill, skillIdx) => (
+                <span class="skill-chip-wrapper" data-skill-idx={skillIdx}>
+                  <a
+                    href={skill.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="skill-chip interactive"
+                    title={`${skill.name} — official documentation`}
+                  >
+                    {skill.name}
+                    {skill.note && <span class="text-[10px] opacity-60 ml-0.5">({skill.note})</span>}
+                    <svg width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M12 8.67v5.33H2V4h5.33M9.33 2H14v4.67M6.67 9.33L14 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                  <button
+                    class="remove-chip font-mono text-[10px] text-[var(--color-muted)] hover:text-[var(--color-coral)] dark:hover:text-[var(--color-red)] bg-transparent border-none cursor-pointer p-0 ml-0.5"
+                    aria-label={`Remove ${skill.name}`}
+                    tabindex="-1"
+                  >
+                    &times;
+                  </button>
+                </span>
+              ))}
+            </div>
+
+            {/* Accent bar at bottom */}
+            <div
+              class="mt-4 h-[3px] w-12 rounded-sm"
+              style={`background: ${accentColor};`}
+              aria-hidden="true"
+            ></div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Edit mode hint -->
+    <p class="animate-on-scroll font-mono text-xs text-[var(--color-muted)] mt-4 text-center hidden" id="edit-hint">
+      Edit mode active: click &times; to remove skills, drag to reorder (visual only — resets on reload)
+    </p>
+  </div>
+</section>
+
+<script>
+  // ===== Edit Mode Toggle =====
+  (function() {
+    const toggle = document.getElementById('skills-edit-toggle');
+    const grid = document.getElementById('skills-grid');
+    const label = document.getElementById('edit-mode-label');
+    const hint = document.getElementById('edit-hint');
+    let editMode = false;
+
+    toggle?.addEventListener('click', () => {
+      editMode = !editMode;
+
+      if (editMode) {
+        grid?.classList.add('edit-mode');
+        if (label) label.textContent = 'Done Editing';
+        if (hint) hint.classList.remove('hidden');
+        toggle.classList.add('brutal-btn--coral');
+      } else {
+        grid?.classList.remove('edit-mode');
+        if (label) label.textContent = 'Edit Mode';
+        if (hint) hint.classList.add('hidden');
+        toggle.classList.remove('brutal-btn--coral');
+      }
+
+      // Wire up remove chip buttons (they're hidden by default, shown in edit-mode)
+      document.querySelectorAll('.remove-chip').forEach(btn => {
+        if (editMode) {
+          btn.setAttribute('tabindex', '0');
+        } else {
+          btn.setAttribute('tabindex', '-1');
+        }
+      });
+    });
+
+    // Remove skill on × click (visual only)
+    grid?.addEventListener('click', (e) => {
+      if (!editMode) return;
+      const removeBtn = e.target.closest('.remove-chip');
+      if (!removeBtn) return;
+
+      const wrapper = removeBtn.closest('.skill-chip-wrapper');
+      if (wrapper) {
+        wrapper.style.opacity = '0';
+        wrapper.style.transform = 'scale(0.8)';
+        wrapper.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        setTimeout(() => wrapper.remove(), 200);
+      }
+    });
+  })();
+</script>
